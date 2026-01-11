@@ -3,14 +3,14 @@ import { z } from "zod";
 import { UserModel } from "../model/UserModel.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-export const singUpController = async (
+export const signUpController = async (
   req: Request,
   res: Response
 ): Promise<any> => {
   try {
     const requestBody = z.object({
       username: z.string().min(3).max(15),
-      email: z.string().email().min(5).max(30),
+      email: z.string().email().min(8).max(30),
       password: z
         .string()
         .min(8)
@@ -23,7 +23,7 @@ export const singUpController = async (
     const { success, error, data } = requestBody.safeParse(req.body);
     if (!success) {
       return res
-        .status(411)
+        .status(400)
         .json({ message: "Error with inputs", error: error.format() });
     }
     const { username, email, password } = data;
@@ -41,7 +41,9 @@ export const singUpController = async (
     });
     return res.status(201).json({ message: "User succesfully created" });
   } catch (err) {
-    return res.status(400).json({ message: "Server error", err });
+    console.log(err);
+    
+    res.status(400).json({ message: "Server error"});
   }
 };
 
@@ -67,7 +69,7 @@ export const signInController = async (
     const { success, error, data } = requestBody.safeParse(req.body);
     if (!success)
       return res
-        .status(411)
+        .status(400)
         .json({ message: "Error is occuring ", error: error.format() });
 
     const { identifier, password } = data;
@@ -89,6 +91,7 @@ export const signInController = async (
 
     res.status(200).json({ message: "User login succesfully ", token });
   } catch (error) {
-    res.status(500).json({ message: "Something went wrong", error: error });
+    console.log(error);
+    res.status(500).json({ message: "Something went wrong" });
   }
 };
