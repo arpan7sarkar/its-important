@@ -1,5 +1,5 @@
 import mongoose, { type ObjectId } from "mongoose";
-import { User } from "./UserModel.js";
+import { UserModel } from "./UserModel.js";
 
 const contentTypes = ["image", "video", "article", "audio", "shorts", "others"];
 
@@ -12,7 +12,7 @@ const ContentSchema = new mongoose.Schema({
   tags: [{ type: ObjectId, ref: "Tag" }],
   userId: { type: ObjectId, ref: "User", required: true },
    validate: async (value: ObjectId)=> {
-      const user = await User.findById(value);
+      const user = await UserModel.findById(value);
       if (!user) {
         throw new Error('User does not exist');
       }
@@ -23,14 +23,13 @@ const LinkSchema = new mongoose.Schema({
   hash: { type: String, required: true },
   userId: { type: ObjectId, ref: "User", required: true },
   validate: async (value: ObjectId)=> {
-      const user = await User.findById(value);
+      const user = await UserModel.findById(value);
       if (!user) {
         throw new Error('User does not exist');
       }
     }
 });
 
-const Content = mongoose.model("Content", ContentSchema);
-const Link = mongoose.model("Link", LinkSchema);
+export const Content = mongoose.model("Content", ContentSchema);
+export const Link = mongoose.model("Link", LinkSchema);
 
-export default { Content, Link };
