@@ -1,4 +1,4 @@
-import {Schema,Model} from "mongoose";
+import {Schema,model} from "mongoose";
 
 
 const UserSchema = new Schema({
@@ -7,6 +7,6 @@ const UserSchema = new Schema({
   password: { type: String, required: true },
 });
 
-export const UserModel=new Model( "User", UserSchema);
+export const UserModel= model( "User", UserSchema);
 
 

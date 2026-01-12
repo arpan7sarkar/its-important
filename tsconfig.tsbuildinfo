@@ -1,0 +1,1 @@
+{"root":["./src/index.ts","./src/controller/signincontroller.ts","./src/model/contentmodel.ts","./src/model/tagmodel.ts","./src/model/usermodel.ts","./src/routes/user.route.ts"],"version":"5.9.3"}
