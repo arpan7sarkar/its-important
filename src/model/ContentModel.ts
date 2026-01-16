@@ -11,23 +11,12 @@ const ContentSchema = new mongoose.Schema({
   title: { type: String, required: true },
   tags: [{ type: ObjectId, ref: "Tag" }],
   userId: { type: ObjectId, ref: "User", required: true },
-   validate: async (value: ObjectId)=> {
-      const user = await UserModel.findById(value);
-      if (!user) {
-        throw new Error('User does not exist');
-      }
-    }
 });
 
 const LinkSchema = new mongoose.Schema({
   hash: { type: String, required: true },
   userId: { type: ObjectId, ref: "User", required: true },
-  validate: async (value: ObjectId)=> {
-      const user = await UserModel.findById(value);
-      if (!user) {
-        throw new Error('User does not exist');
-      }
-    }
+ 
 });
 
 export const Content = mongoose.model("Content", ContentSchema);
