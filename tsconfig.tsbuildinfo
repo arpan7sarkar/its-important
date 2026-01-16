@@ -1,1 +1,1 @@
-{"root":["./src/index.ts","./src/controller/signincontroller.ts","./src/model/contentmodel.ts","./src/model/tagmodel.ts","./src/model/usermodel.ts","./src/routes/user.route.ts"],"version":"5.9.3"}
+{"root":["./src/index.ts","./src/controller/createcontentcontroller.ts","./src/controller/signincontroller.ts","./src/middleware/isverified.ts","./src/model/contentmodel.ts","./src/model/tagmodel.ts","./src/model/usermodel.ts","./src/routes/content.routes.ts","./src/routes/user.route.ts","./src/types/decodedtoken.d.ts","./src/types/express.d.ts"],"version":"5.9.3"}

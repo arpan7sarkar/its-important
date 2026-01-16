@@ -54,8 +54,8 @@ export const signInController = async (
   try {
     const requestBody = z.object({
       identifier: z.union([
-        z.string().email().min(5).max(30), // Email check
-        z.string().min(3).max(15), // Username check
+        z.string().email().min(5).max(50), // Email check
+        z.string().min(3).max(50), // Username check
       ]),
       password: z
         .string()
@@ -84,7 +84,7 @@ export const signInController = async (
       return res.status(403).json({ message: "Invalid credentials" });
 
     const token = jwt.sign(
-      { _id: user._id },
+      { _id: user._id.toString() },
       process.env.JWT_SECRET as string,
       { expiresIn: "1d" }
     );

@@ -2,6 +2,7 @@ import "dotenv/config"
 import express from 'express';
 import mongoose from 'mongoose';
 import userRouter from "./routes/user.route.js";
+import contentRouter from "./routes/content.routes.js";
 
 const app= express();
 app.use(express.json());
@@ -17,6 +18,7 @@ const connectDB =async ()=>{
 
 
 app.use("/api/v1/user",userRouter)
+app.use("/api/v1/content",contentRouter)
 
 
 app.listen(3000,()=>{
